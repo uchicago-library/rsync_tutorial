@@ -8,7 +8,7 @@ Rsync is a command-line program. It helps to prevent some common errors, like ac
 
 ## Understanding rsync
 
-Rsync (pronounced "arr-sink") is a program to synchronize two directories. But what does that mean?
+Rsync (pronounced "ARR-sink") is a program to synchronize two directories. But what does that mean?
 
 Imagine a directory tree on your local machine with thousands of files organized into hundreds of subdirectories. Lets say there are 10Gb of files in all, and you copied all of those directories and files to a remote server. But then, you realized that ten of the files needed to be updated. You do your updates. 
 
