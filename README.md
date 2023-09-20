@@ -79,7 +79,9 @@ And again, `pwd` prints the current directory, only this time it does it on the 
 
 You'll use a command like this to actually sync the files:
 
+```console
 rsync -rltvz /src/local-dir/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol
+```
 
 ## Keeping Ubuntu and WSL up to date
 
