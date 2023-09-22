@@ -88,7 +88,7 @@ Find the absolute path to your target directory and make a note of it. It will b
 ### Make the contents of a remote directory match a local one
 
 ```console
-rsync -rltvz /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
+rsync -rltvz /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 We specified a few options above- here are some notes on each one:
@@ -103,22 +103,22 @@ We specified a few options above- here are some notes on each one:
 
 -z, or --compress. This option tells rsync to compress the data it sends, which shortens sync time. 
 
-Note that in this command the source directory (/src/-local-dir/) comes first and the target directory (pressync.lib.uchicago.edu:/data/pres-xver/mvol/.
+Note that in this command the source directory (/mnt/c/src/rsynctest/) comes first and the target directory (pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/.
 
-Also note the trailing slash at the end of the source directory. This means, "copy the contents of this directory". Omitting that trailing slash would have meant "copy this directory". The difference is subtle but important- here, I want `pressync.lib.uchicago.edu:/data/pres-xfer/mvol/` to match the local directory `/mnt/c/src/mvol/`. I do not want to create a second mvol directory in the target at `pressync.lib.uchicago.edu:/data/pres-xfer/mvol/mvol/`. 
+Also note the trailing slash at the end of the source directory. This means, "copy the contents of this directory". Omitting that trailing slash would have meant "copy this directory". The difference is subtle but important- here, I want `pressync.lib.uchicago.edu:/data/pres-xfer/mvol/` to match the local directory `/mnt/c/src/rsynctest/`. I do not want to create a second mvol directory in the target at `pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/rsynctest/`. 
 
 ### Delete files in the target directory that have been deleted in the source
 
 The command above copies files that exist on the source to the target, but it does not delete files from the target if they had been deleted on the source. That is a more dangerous operation, but here is how you can do that. First, use the `--dry-run` option to see what rsync is going to do without actually doing it yet:
 
 ```console
-rsync -rltvz --delete --dry-run /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
+rsync -rltvz --delete --dry-run /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 You'll see a list of deletions in the output rsync provides. If that looks good, go ahead and run the command by omitting `--dry-run`:
 
 ```console
-rsync -rltvz --delete /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
+rsync -rltvz --delete /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 ### Output results to a log file
@@ -126,7 +126,7 @@ rsync -rltvz --delete /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer
 Log files provide a receipt you can use to prove that you copied specific files.
 
 ```console
-rsync -rltvz --log-file=20230630.log /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
+rsync -rltvz --log-file=20230630.log /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 You can name your log file whatever you like, but in the example above, I used the date 20230630 to show that I produced the log file on June 30, 2023. 
@@ -136,7 +136,7 @@ You can name your log file whatever you like, but in the example above, I used t
 Because rsync checks files to see if there are any differences before syncing, you can invoke the command a second time to confirm that all files were successfully transferred. 
 
 ```console
-rsync -rltvz --log-file=20230630.2.log /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
+rsync -rltvz --log-file=20230630.2.log /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 Here I name the log files "20230630.2.log" to store two separate logs- the first to show which files were copied, and the second to prove that they were copied successfully. 
@@ -144,11 +144,11 @@ Here I name the log files "20230630.2.log" to store two separate logs- the first
 ### Removing files from the source directory after copying
 
 ```console
-rsync -rltvz --remove-source-files /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
-rm /mnt/c/src/mvol/
+rsync -rltvz --remove-source-files /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
+rm /mnt/c/src/rsynctest/
 ```
 
-Here rsync will bascially move files instead the source directory instead of just copying them. The second command, `rm /mnt/c/src/mvol/`, removes the outer `mvol` directory itself. 
+Here rsync will bascially move files instead the source directory instead of just copying them. The second command, `rm /mnt/c/src/rsynctest/`, removes the outer `mvol` directory itself. 
 
 ## Using man pages to learn more
 
