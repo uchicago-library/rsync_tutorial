@@ -94,9 +94,13 @@ rsync -rltvz /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
 We specified a few options above- here are some notes on each one:
 
 -r, or --recursive. This tells rsync to "recurse" into subdirectories. 
+
 -l, or --links. This tells rsync to copy symbolic links, or symlinks, as symlinks. 
+
 -t, or --times. Rsync will preserve the timestamps of each file it copies. 
+
 -v, or --verbose. Rsync will report more of what it is doing to the user. 
+
 -z, or --compress. This option tells rsync to compress the data it sends, which shortens sync time. 
 
 Note that in this command the source directory (/src/-local-dir/) comes first and the target directory (pressync.lib.uchicago.edu:/data/pres-xver/mvol/.
