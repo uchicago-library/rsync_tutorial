@@ -2,7 +2,7 @@
 
 ## About this document
 
-This tutorial shows how to use [rsync](https://en.wikipedia.org/wiki/Rsync) to copy large amounts of data between servers quickly and securely. Although rsync is a commandline program, these notes try to avoid assuming any experience with the command line. 
+This tutorial shows how to use [rsync](https://en.wikipedia.org/wiki/Rsync) to copy large amounts of data between servers quickly and securely. Although rsync is a command line program, these notes try to avoid assuming any experience with the command line. 
 
 Rsync helps to prevent some common errors that happen when you copy a large nubmer of files, like accidentally files to the wrong place by releasing the mouse button too early during a drag and drop. It is also very reliable and fault-tolerant. It's a powerful command, which comes with a bit of a learning curve. Hopefully these notes will help you get started. Please feel free to reach out with any questions or concerns so we can continue to improve them.
 
@@ -126,10 +126,21 @@ rsync -rltvz --delete /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres
 Log files provide a receipt you can use to prove that you copied specific files.
 
 ```console
-rsync -rltvz --log-file=20230630.log /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
+rsync -rltvz /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/ > /mnt/c/src/20230630.log 
 ```
 
-You can name your log file whatever you like, but in the example above, I used the date 20230630 to show that I produced the log file on June 30, 2023. 
+Here everything rsync would have printed to the screen gets saved when we use &gt; to redirect standard output (the screen, or STDOUT) to a file. You can name your log file whatever you like, but in the example above, I used the date 20230630 to show that I produced the log file on June 30, 2023. 
+
+View the log:
+```console
+cat /mnt/c/src/20230630.log
+```
+
+Or...
+
+```console
+cat /mnt/c/src/20230630.log | less
+```
 
 ### Checking to be sure files were copied correctly
 
