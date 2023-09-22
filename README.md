@@ -131,7 +131,7 @@ rsync -rltvz --log-file=20230630.log /mnt/c/src/mvol/ pressync.lib.uchicago.edu:
 
 You can name your log file whatever you like, but in the example above, I used the date 20230630 to show that I produced the log file on June 30, 2023. 
 
-## Checking to be sure files were copied correctly
+### Checking to be sure files were copied correctly
 
 Because rsync checks files to see if there are any differences before syncing, you can invoke the command a second time to confirm that all files were successfully transferred. 
 
@@ -141,7 +141,7 @@ rsync -rltvz --log-file=20230630.2.log /mnt/c/src/mvol/ pressync.lib.uchicago.ed
 
 Here I name the log files "20230630.2.log" to store two separate logs- the first to show which files were copied, and the second to prove that they were copied successfully. 
 
-## Removing files from the source directory after copying
+### Removing files from the source directory after copying
 
 ```console
 rsync -rltvz --remove-source-files /mnt/c/src/mvol/ pressync.lib.uchicago.edu:/data/pres-xfer/mvol/
