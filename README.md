@@ -144,10 +144,10 @@ cat /mnt/c/src/20230630.log | less
 
 ### Checking to be sure files were copied correctly
 
-Because rsync checks files to see if there are any differences before syncing, you can invoke the command a second time to confirm that all files were successfully transferred. 
+Because rsync checks files to see if there are any differences before syncing, you can invoke the command a second time to confirm that all files were successfully transferred. This time I use the --checksum parameter to calculate checksums of each file- note that this will take some time for a large set of files.
 
 ```console
-rsync -rltvz --log-file=20230630.2.log /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
+rsync -rltvz --checksum --log-file=20230630.2.log /mnt/c/src/rsynctest/ pressync.lib.uchicago.edu:/data/pres-xfer/rsynctest/
 ```
 
 Here I name the log files "20230630.2.log" to store two separate logs- the first to show which files were copied, and the second to prove that they were copied successfully. 
